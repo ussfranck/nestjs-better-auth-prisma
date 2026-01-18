@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:3000
+@email = test@mail.local
+@password = Test1234!
+@name = Test
+
+### 1) Register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}",
+  "name": "{{name}}"
+}
+
+### 2) Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### 3) Me (requires cookie session)
+GET {{baseUrl}}/auth/me
+
+### 4) Logout
+POST {{baseUrl}}/auth/logout

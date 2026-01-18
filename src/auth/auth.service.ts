@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   async logout(headers: Headers) {
-    // BetterAuth: certaines API ont besoin des headers (cookies, user-agent, ip...). :contentReference[oaicite:2]{index=2}
     return await this.auth.api.signOut({
       returnHeaders: true,
       headers,

@@ -1,98 +1,133 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://www.prisma.io/" target="blank"><svg viewBox="-27 0 310 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#000000" width="120"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M254.312882,235.518775 L148.000961,9.74987264 C145.309805,4.08935083 139.731924,0.359884549 133.472618,0.0359753113 C127.198908,-0.384374336 121.212054,2.71925839 117.939655,8.08838662 L2.63252565,194.847143 C-0.947129465,200.604248 -0.871814894,207.912774 2.8257217,213.594888 L59.2003287,300.896318 C63.5805009,307.626626 71.8662281,310.673635 79.5631922,308.384597 L243.161606,259.992851 C248.145475,258.535702 252.252801,254.989363 254.421072,250.271225 C256.559881,245.57581 256.523135,240.176915 254.32061,235.511047 L254.312882,235.518775 Z M230.511129,245.201761 L91.6881763,286.252058 C87.4533189,287.511696 83.388474,283.840971 84.269448,279.567474 L133.866738,42.0831633 C134.794079,37.6396542 140.929985,36.9364206 142.869673,41.0476325 L234.684164,236.021085 C235.505704,237.779423 235.515611,239.809427 234.711272,241.575701 C233.906934,243.341974 232.369115,244.667163 230.503401,245.201761 L230.511129,245.201761 Z" fill="#6c737a" fill-rule="nonzero"> </path> </g> </g></svg></a>
+  <a href="https://www.better-auth.com/" target="blank"><img src="https://images.seeklogo.com/logo-png/65/2/better-auth-logo-png_seeklogo-653281.png" width="180" height="220" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# NestJS + BetterAuth + Prisma v7 Starter Template
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Description
+A production-ready starter template for building a NestJS backend with:
 
-## Description
+- ✅ BetterAuth (session-based authentication)
+- ✅ Prisma v7 (with adapter setup)
+- ✅ PostgreSQL
+- ✅ Clean architecture & DI-friendly setup
+- ✅ Typed auth instance (no `any`)
+- ✅ Ready-to-use auth routes (register, login, logout, me, etc.)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This template solves the **real-world integration issues** between:
+- NestJS dependency injection
+- BetterAuth factory-based API
+- Prisma v7 new engine / adapter system
 
-## Project setup
+If you've struggled to make these three work together — this repo is for you.
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+### 🚀 Features Embedded 
 
-```bash
-# development
-$ npm run start
+- Session-based authentication (cookies)
+- Email & password auth enabled
+- Prisma schema already configured for BetterAuth
+- Auth module fully wired into NestJS
+- PrismaService + adapter setup
+- Factory-based auth instance (`createAuth`)
+- Strong TypeScript typing everywhere
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+### 🧱 Tech Stack
 
-## Run tests
+- NestJS (REST API Mode)
+- BetterAuth (latest)
+- Prisma v7 (latest)
+- PostgreSQL (via Neon but easy to change to another DB)
+- TypeScript
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 📦 Installation
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://github.com/ussfranck/nestjs-better-auth-prisma.git
+cd nestjs-better-auth-prisma-template
+npm install
+````
+
+---
+
+Create a `.env` file:
+
+use `.env.example` as a template.
+
+---
+
+### 🗄️ Setup database
+
+If your database is PostgreSQL via Neon, you just change the DATABASE_URL in the `.env` file. Otherwise, you'll need to change the connection string, pool adapter for betterAuth and Prisma
+
+Run:
+```bash
+pnpm prisma generate
+pnpm prisma migrate dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+### ▶️ Run the server
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+pnpm dev
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+The Server will start on:
 
-## Support
+```
+http://localhost:3000
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
+### 🔐 Auth Endpoints
 
-## Stay in touch
+* POST `/auth/register`
+* POST `/auth/login`
+* POST `/auth/logout`
+* GET `/auth/me`
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Session is stored in **HTTP-only cookies**.
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 🧠 Architecture Notes
+
+* Auth instance is created via factory: `createAuth(prisma)`
+* Typed using: `ReturnType<typeof createAuth>`
+* Prisma v7 uses explicit adapter configuration
+* No Passport, no JWT, no magic — just sessions done right.
+
+---
+
+### ❗ Why this exists 🤦🏽‍♂️
+
+Because integrating:
+
+* NestJS
+* BetterAuth
+* Prisma v7 (latest version)
+
+is **not trivial at all** in real projects.🤦🏽‍♂️
+
+This repo gives you a **clean, working, production-shaped base**.
+
+---
+
+### 🧑‍💻 Author
+
+USS
+
+---
+
+### 📄 License
+
+MIT

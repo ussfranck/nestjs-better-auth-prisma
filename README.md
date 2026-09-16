@@ -10,8 +10,8 @@
 A production-ready starter template for building a NestJS backend with:
 
 - ✅ BetterAuth (session-based authentication)
-- ✅ Prisma v7 (with adapter setup)
-- ✅ PostgreSQL
+- ✅ Prisma v7+ (with adapter setup)
+- ✅ PostgreSQL | MySQL ...
 - ✅ Clean architecture & DI-friendly setup
 - ✅ Typed auth instance (no `any`)
 - ✅ Ready-to-use auth routes (register, login, logout, me, etc.)
@@ -39,7 +39,7 @@ If you've struggled to make these three work together — this repo is for you.
 
 ### 🧱 Tech Stack
 
-- NestJS (REST API Mode)
+- NestJS (latest)
 - BetterAuth (latest)
 - Prisma v7 (latest)
 - PostgreSQL (via Neon but easy to change to another DB)

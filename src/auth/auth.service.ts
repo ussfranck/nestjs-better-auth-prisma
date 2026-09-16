@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { APIError } from 'better-auth/api';
-import { AUTH_INSTANCE } from '../common/auth/auth';
-import type { BetterAuth } from '../better-auth';
+import { Inject, Injectable } from "@nestjs/common"
+import { APIError } from "better-auth/api"
+import { AUTH_INSTANCE } from "../common/auth/auth"
+import type { BetterAuth } from "../better-auth"
 
 @Injectable()
 export class AuthService {
@@ -12,12 +12,12 @@ export class AuthService {
       return await this.auth.api.signUpEmail({
         returnHeaders: true,
         body,
-      });
+      })
     } catch (e) {
       if (e instanceof APIError) {
-        return { error: { message: e.message, status: e.status } };
+        return { error: { message: e.message, status: e.status } }
       }
-      throw e;
+      throw e
     }
   }
 
@@ -26,24 +26,23 @@ export class AuthService {
       return await this.auth.api.signInEmail({
         returnHeaders: true,
         body,
-      });
+      })
     } catch (e) {
       if (e instanceof APIError) {
-        return { error: { message: e.message, status: e.status } };
+        return { error: { message: e.message, status: e.status } }
       }
-      throw e;
+      throw e
     }
   }
 
   async logout(headers: Headers) {
-    // BetterAuth: certaines API ont besoin des headers (cookies, user-agent, ip...). :contentReference[oaicite:2]{index=2}
     return await this.auth.api.signOut({
       returnHeaders: true,
       headers,
-    });
+    })
   }
 
   async getSession(headers: Headers) {
-    return await this.auth.api.getSession({ headers });
+    return await this.auth.api.getSession({ headers })
   }
 }

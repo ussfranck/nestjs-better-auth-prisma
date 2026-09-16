@@ -1,13 +1,13 @@
-import { betterAuth } from 'better-auth';
-import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { PrismaService } from '../prisma/prisma.service';
+import { betterAuth } from "better-auth"
+import { prismaAdapter } from "better-auth/adapters/prisma"
+import { PrismaService } from "../prisma/prisma.service"
 
 export const createAuth = (prisma: PrismaService) =>
   betterAuth({
-    database: prismaAdapter(prisma, { provider: 'postgresql' }), // Make it coherent with your schema file
-    appName: process.env.APP_NAME ?? 'YOUR_APP',
-    secret: process.env.BETTER_AUTH_SECRET ?? 'secret',
-    baseURL: process.env.BETTER_AUTH_BASE_URL || 'http://localhost:3000',
+    database: prismaAdapter(prisma, { provider: "postgresql" }), // Make it coherent with your schema file
+    appName: process.env.APP_NAME ?? "YOUR_APP",
+    secret: process.env.BETTER_AUTH_SECRET ?? "secret",
+    baseURL: process.env.BETTER_AUTH_BASE_URL || "http://localhost:3000",
     emailAndPassword: {
       enabled: true,
       requireEmailVerification: false,
@@ -15,22 +15,23 @@ export const createAuth = (prisma: PrismaService) =>
       maxPasswordLength: 128,
       revokeSessionsOnPasswordReset: true,
     },
+    plugins: [],
     session: {
       expiresIn: 60 * 60 * 24 * 7,
       //   Auto Rotation if user is active
       updateAge: 60 * 40 * 24,
-      //   Anti violation session
+      //   Anti-violation session
       freshAge: 60 * 60 * 2,
     },
     advanced: {
       cookies: {
         sessionToken: {
-          name: 'yourapp.session',
+          name: "yourapp.session",
           options: {
             httpOnly: true,
-            sameSite: '1max',
-            secure: process.env.NODE_ENV === 'production',
-            path: '/',
+            sameSite: "1max",
+            secure: process.env.NODE_ENV === "production",
+            path: "/",
           },
         },
       },
@@ -40,5 +41,5 @@ export const createAuth = (prisma: PrismaService) =>
       window: 60,
       max: 100,
     },
-    trustedOrigins: ['http://localhost:3000', 'http://localhost:3001'],
-  });
+    trustedOrigins: ["http://localhost:3000", "http://localhost:3001"],
+  })

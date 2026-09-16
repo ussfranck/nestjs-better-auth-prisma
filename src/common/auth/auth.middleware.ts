@@ -1,7 +1,7 @@
-import { Injectable, Inject, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-import type { BetterAuth } from '../../better-auth';
-import { AUTH_INSTANCE } from './auth';
+import { Injectable, Inject, NestMiddleware } from "@nestjs/common"
+import { Request, Response, NextFunction } from "express"
+import type { BetterAuth } from "../../better-auth"
+import { AUTH_INSTANCE } from "./auth"
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -11,11 +11,11 @@ export class AuthMiddleware implements NestMiddleware {
     try {
       const session = await this.auth.api.getSession({
         headers: req.headers as any,
-      });
-      (req as any).session = session;
+      })
+      ;(req as any).session = session
     } catch (e) {
-      (req as any).session = null;
+      ;(req as any).session = null
     }
-    next();
+    next()
   }
 }

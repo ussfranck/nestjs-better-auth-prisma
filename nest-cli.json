@@ -6,8 +6,8 @@
     "deleteOutDir": true,
     "plugins": ["@nestjs/swagger/plugin"],
     "assets": [{
-"include": "generated/**/*",
-"outDir": "dist/src"
+      "include": "generated/**/*",
+      "outDir": "dist"
     }]
   }
 }

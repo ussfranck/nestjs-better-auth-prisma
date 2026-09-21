@@ -4,244 +4,69 @@
   <a href="https://www.better-auth.com/" target="blank"><img src="https://images.seeklogo.com/logo-png/65/2/better-auth-logo-png_seeklogo-653281.png" width="180" height="220" alt="Better Auth Logo" /></a>
 </p>
 
-# NestJS 12 + BetterAuth + Prisma v7 Starter Template
+# NestJS 12 + BetterAuth + Prisma v7 Starter
 
-A production-grade, highly optimized starter template that integrates **NestJS 12**, **BetterAuth** (session-based authentication), and **Prisma v7** (driver adapter architecture) into a clean, strictly-typed backend foundation.
+Production-ready backend boilerplate integrating NestJS 12, BetterAuth (session-based), and Prisma v7 (adapter architecture).
 
----
+## Core Features
 
-### Overview & Operational Value
+*   **NestJS 12:** Latest framework version with Swagger OpenAPI out-of-the-box (`/api`).
+*   **BetterAuth:** Factory-injected instance (`AUTH_INSTANCE`). HTTP-only cookies, automated session rotation, built-in rate limits. Fully typed.
+*   **Prisma v7:** Configured with `@prisma/adapter-pg` and connection pooling (`pg.Pool`).
+*   **DevX:** Oxlint integrated for 50-100x faster linting. Prettier for formatting. `app.http` included for quick REST client testing.
+*   **Zod Integration:** Built-in Zod resolution for seamless BetterAuth plugin support.
+*   **Auth Decorators:** `@Session()`, `@AllowAnonymous()`, and global `AuthMiddleware`.
 
-Integrating modern session authentication and the latest database driver adapters within an enterprise dependency injection framework often encounters friction:
-- **Dependency Injection Lifecycle:** BetterAuth uses a factory-based setup that requires an active database client instance at initialization time.
-- **Prisma v7 Driver Adapters:** Modern Prisma v7 utilizes dedicated database connection pools (e.g. `@prisma/adapter-pg`) requiring explicit runtime configuration.
-- **Plugin Ecosystem Compatibility:** BetterAuth plugins rely on Zod schemas for input validation and CLI schema generation. Explicit Zod integration prevents runtime resolution errors when extending plugins.
-- **Fast Developer Tooling:** Replaced legacy ESLint setups with **Oxlint** (`oxlint` / `oxlint-tsgolint`) to maximize linting throughput and reduce CI/local feedback loops by up to 50–100x.
+## Stack
 
-This repository resolves these architectural challenges with zero compromises on type safety, developer velocity, or execution performance.
+*   NestJS `^12.0.3`
+*   BetterAuth `^1.4.15`
+*   Prisma v7 (`@prisma/client`, `@prisma/adapter-pg`)
+*   Zod `^4.x`
+*   Oxlint `^1.83.0`
+*   Node.js `>=24` (strict via engines)
 
----
+## Setup
 
-### Key Features & Architectural Highlights
+1.  **Clone & Install:**
 
-- **NestJS 12 Core:** Built on NestJS 12, featuring updated decorators, configuration modules, Express platform integration, and Swagger OpenAPI documentation.
-- **BetterAuth Factory Integration:**
-  - Auth instance created cleanly via `createAuth(prisma: PrismaService)` and injected with a robust Symbol token (`AUTH_INSTANCE`).
-  - End-to-end type safety using `ReturnType<typeof createAuth>` without `any` workarounds.
-  - HTTP-only cookie management, session rotation (`updateAge`), security age checks (`freshAge`), and built-in rate limiting.
-- **Prisma v7 Driver Adapter:**
-  - Configured with PostgreSQL via `@prisma/adapter-pg` and `pg.Pool`.
-  - Migration and schema management driven by `prisma.config.ts`.
-  - Schema synchronization utility `auth.schema.ts` for generating BetterAuth tables via `@better-auth/cli`.
-- **Plugin Ready (Zod Integration):**
-  - Explicit dependency resolution for Zod ensures full compatibility with BetterAuth's validation layer and third-party plugin ecosystem.
-- **High-Performance Linting & Tooling:**
-  - **Oxlint** for lightning-fast static analysis configured in `.oxlintrc.json`.
-  - **Prettier** for automated formatting.
-  - Target environment: Node.js 24+ and TypeScript 6.
-- **Auth Middleware, Guards & Decorators:**
-  - Global `AuthMiddleware` attaches active session data directly to `req.session`.
-  - `@Session()` parameter decorator for direct controller route access.
-  - `AuthGuard`, `OptionalAuthGuard`, `@AllowAnonymous()`, and `@OptionalAuth()` metadata decorators for route-level authorization.
-- **Swagger / OpenAPI:** Interactive documentation automatically exposed at `/api`.
-- **REST Testing Client:** Included `app.http` for quick route validation with VS Code REST Client or JetBrains HTTP Client.
+```bash
+npm install
+```
 
----
-
-### Tech Stack
-
-| Layer / Technology | Description | Version |
-| :--- | :--- | :--- |
-| **Framework** | NestJS (Core, Common, Platform-Express, Config, Swagger) | `^12.0.3` |
-| **Authentication** | BetterAuth | `^1.4.15` |
-| **ORM / Database** | Prisma v7 (`@prisma/client`, `@prisma/adapter-pg`, `pg`) | `^7.2.0` |
-| **Validation / Schema** | Zod | `^4.x / ^3.x` |
-| **Linter** | Oxlint (`oxlint`, `oxlint-tsgolint`) | `^1.83.0` |
-| **Formatter** | Prettier | `^3.4.2` |
-| **Language & Runtime** | Node.js `>=24 <25`, TypeScript | `^6.0.3` |
-
----
-
-### Prerequisites
-
-- **Node.js**: `v24.x` (enforced via `.nvmrc` and `engines` in `package.json`)
-- **Package Manager**: `npm` or `pnpm`
-- **Database**: PostgreSQL database (Neon, local Postgres, Supabase, RDS, etc.)
-
----
-
-### Environment Configuration
-
-Create a `.env` file in the project root based on `.env.example`:
+2.  **Environment:**
 
 ```bash
 cp .env.example .env
+# Add DATABASE_URL and BETTER_AUTH_SECRET
 ```
 
-Configure your environment variables:
-
-```env
-# Database connection string (PostgreSQL)
-DATABASE_URL=postgresql://user:password@localhost:5432/mydb?sslmode=require
-
-# BetterAuth secret key (generate a strong random string)
-BETTER_AUTH_SECRET=your-random-32-character-secret
-
-# Application URLs
-BETTER_AUTH_BASE_URL=http://localhost:3000
-APP_NAME="YOUR_APP"
-PORT=3000
-```
-
----
-
-### Installation & Database Setup
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Generate Prisma Client:**
-   ```bash
-   npx prisma generate
-   ```
-
-3. **Run Database Migrations:**
-   ```bash
-   npx prisma migrate dev --name init
-   ```
-
-4. **(Optional) BetterAuth Schema Synchronization:**
-   If modifying BetterAuth configuration or adding plugins, regenerate the Prisma schema mapping:
-   ```bash
-   npx @better-auth/cli@latest generate --config auth.schema
-   ```
-
----
-
-### Running the Application
+3.  **Database (PostgreSQL):**
 
 ```bash
-# Development mode with watch
-npm run start:dev
-
-# Production build
-npm run build
-
-# Start production server
-npm run start:prod
+npx prisma generate
+npx prisma migrate dev --name init
+# Optional: Sync BetterAuth schema
+# npx @better-auth/cli@latest generate --config auth.schema
 ```
 
-The application starts by default at `http://localhost:3000`.
+## Usage
 
-- **Swagger Documentation:** `http://localhost:3000/api`
-- **Health / Root Endpoint:** `http://localhost:3000/`
-
----
-
-### Authentication API & Workflow
-
-The template provides built-in endpoints under `/auth`:
-
-| Method | Endpoint | Description | Request Body / Headers |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/auth/register` | Register new user with email & password | `{ "email": "...", "password": "...", "name": "..." }` |
-| `POST` | `/auth/login` | Authenticate user & set session cookie | `{ "email": "...", "password": "..." }` |
-| `POST` | `/auth/logout` | Revoke session & clear cookie | Cookie / Headers |
-| `GET` | `/auth/me` | Fetch active session & user payload | Session Cookie |
-
-Sessions are managed securely via **HTTP-only cookies** (`yourapp.session`), configured with `sameSite`, secure flags, and automatic session rotation.
-
-#### Testing Endpoints via `app.http`
-
-You can test all endpoints directly using the included `app.http` file:
-
-```http
-@baseUrl = http://localhost:3000
-@email = test@mail.local
-@password = Test1234!
-@name = Test User
-
-### 1) Register
-POST {{baseUrl}}/auth/register
-Content-Type: application/json
-
-{
-  "email": "{{email}}",
-  "password": "{{password}}",
-  "name": "{{name}}"
-}
-
-### 2) Login
-POST {{baseUrl}}/auth/login
-Content-Type: application/json
-
-{
-  "email": "{{email}}",
-  "password": "{{password}}"
-}
-
-### 3) Me (Session Check)
-GET {{baseUrl}}/auth/me
-
-### 4) Logout
-POST {{baseUrl}}/auth/logout
+```bash
+npm run start:dev  # Watch mode
+npm run build      # Build
+npm run lint       # Run Oxlint
 ```
 
----
+API runs on `http://localhost:3000`. Swagger docs at `/api`.
 
-### Project Structure & Architecture
+## Auth Endpoints (`/auth`)
 
-```
-├── auth.schema.ts             # Dedicated BetterAuth CLI schema generator config
-├── prisma.config.ts           # Prisma v7 configuration file
-├── prisma/
-│   └── schema.prisma          # Database schema (User, Session, Account, Verification)
-├── src/
-│   ├── auth/
-│   │   ├── auth.controller.ts # Route handlers (/auth/register, /auth/login, etc.)
-│   │   ├── auth.module.ts     # Auth module exporting AUTH_INSTANCE & AuthService
-│   │   └── auth.service.ts    # Service interacting with BetterAuth API
-│   ├── common/
-│   │   ├── auth/
-│   │   │   ├── auth.instance.ts   # BetterAuth instance factory (createAuth)
-│   │   │   ├── auth.middleware.ts # Global session extractor middleware
-│   │   │   ├── auth.ts            # AUTH_INSTANCE injection symbol
-│   │   │   ├── decorators/        # @Session(), @AllowAnonymous(), @OptionalAuth()
-│   │   │   └── guards/            # AuthGuard, OptionalAuthGuard
-│   │   └── prisma/
-│   │       ├── prisma.module.ts   # Global Prisma module
-│   │       └── prisma.service.ts  # PrismaService with PostgreSQL adapter pool
-│   ├── app.controller.ts      # Root controller
-│   ├── app.module.ts          # Application root module
-│   ├── better-auth.ts         # Inferred BetterAuth type export
-│   └── main.ts                # Bootstrap with CORS & Swagger OpenAPI setup
-├── .env.example               # Example environment variables
-├── .oxlintrc.json             # Oxlint configuration
-├── nest-cli.json              # Nest CLI configuration (Swagger plugin & assets)
-├── package.json               # Dependencies & scripts
-└── tsconfig.json              # TypeScript configuration
-```
+| Method | Route       | Description                      |
+| :----- | :---------- | :------------------------------- |
+| `POST` | `/register` | `{ email, password, name }`      |
+| `POST` | `/login`    | `{ email, password }`            |
+| `POST` | `/logout`   | Clears session                   |
+| `GET`  | `/me`       | Returns session data             |
 
----
-
-### Available Scripts
-
-| Script | Command | Purpose |
-| :--- | :--- | :--- |
-| `npm run start:dev` | `nest start --watch` | Start development server with file watch |
-| `npm run build` | `nest build` | Compile application to `dist/` |
-| `npm run start:prod` | `node dist/main` | Run production build |
-| `npm run lint` | `oxlint .` | Ultra-fast linting with Oxlint |
-| `npm run format` | `prettier --write ...` | Auto-format TypeScript sources |
-| `npm run format:check`| `prettier --check ...` | Verify formatting consistency |
-| `npm run test` | `jest` | Run unit tests |
-| `npm run test:e2e` | `jest --config ./test/jest-e2e.json` | Run end-to-end tests |
-
----
-
-### Author & License
-
-- **Author:** USS
-- **License:** MIT
+*Test directly using the included `app.http` file.*
